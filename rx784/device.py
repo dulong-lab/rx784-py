@@ -214,12 +214,12 @@ class Device:
 
         return data[0]
 
-    def to_abs(self, x: int, y: int) -> Status:
-        status = self.__send_packet(Command.TO_ABS,
+    def move_abs(self, x: int, y: int) -> Status:
+        status = self.__send_packet(Command.MOVE_ABS,
                                     x.to_bytes(2, 'little', signed=True) + y.to_bytes(2, 'little', signed=True))
         if status != Status.SUCCESS: return status
 
-        status, data = self.__recv_packet(Command.TO_ABS, 1)
+        status, data = self.__recv_packet(Command.MOVE_ABS, 1)
         if status != Status.SUCCESS: return status
 
         return data[0]

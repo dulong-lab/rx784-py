@@ -23,7 +23,7 @@ class Command(IntEnum):
     SEND_REL_MOUSE_STATE           = 54
 
     INIT_ABS_SYSTEM                = 71
-    TO_ABS                         = 72
+    MOVE_ABS                       = 72
     SCROLL_ABS                     = 73
     GET_POS                        = 74
     SET_POS                        = 75
