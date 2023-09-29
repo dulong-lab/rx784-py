@@ -159,12 +159,12 @@ class Device:
             state[0] & (1 << Button.MIDDLE) != 0,
         )
 
-    def to_rel(self, x: int, y: int) -> Status:
-        status = self.__send_packet(Command.TO_REL,
+    def move_rel(self, x: int, y: int) -> Status:
+        status = self.__send_packet(Command.MOVE_REL,
                                     x.to_bytes(2, 'little', signed=True) + y.to_bytes(2, 'little', signed=True))
         if status != Status.SUCCESS: return status
 
-        status, data = self.__recv_packet(Command.TO_REL, 1)
+        status, data = self.__recv_packet(Command.MOVE_REL, 1)
         if status != Status.SUCCESS: return status
 
         return data[0]

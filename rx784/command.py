@@ -17,7 +17,7 @@ class Command(IntEnum):
     RELEASE_ALL_BUTTONS            = 33
     GET_BUTTONS_STATE              = 34
 
-    TO_REL                         = 51
+    MOVE_REL                       = 51
     SCROLL_REL                     = 52
     GET_REL_MOUSE_STATE            = 53
     SEND_REL_MOUSE_STATE           = 54
