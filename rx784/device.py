@@ -205,8 +205,14 @@ class Device:
         return data[0]
 
     def init_abs_system(self, screen_width: int, screen_height: int) -> Status:
-        return self.__send_packet(Command.INIT_ABS_SYSTEM,
-                                  screen_width.to_bytes(2, 'little', signed=True) + screen_height.to_bytes(2, 'little', signed=True))
+        status = self.__send_packet(Command.INIT_ABS_SYSTEM,
+                                    screen_width.to_bytes(2, 'little', signed=True) + screen_height.to_bytes(2, 'little', signed=True))
+        if status != Status.SUCCESS: return status
+
+        status, data = self.__recv_packet(Command.INIT_ABS_SYSTEM, 1)
+        if status != Status.SUCCESS: return status
+
+        return data[0]
 
     def to_abs(self, x: int, y: int) -> Status:
         status = self.__send_packet(Command.TO_ABS,
