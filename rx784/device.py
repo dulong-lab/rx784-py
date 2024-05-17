@@ -154,9 +154,11 @@ class Device:
         if (status != Status.SUCCESS): return status, None
 
         return Status.SUCCESS, ButtonsState(
-            state[0] & (1 << Button.LEFT)   != 0,
-            state[0] & (1 << Button.RIGHT)  != 0,
-            state[0] & (1 << Button.MIDDLE) != 0,
+            state[0] & (1 << Button.LEFT)    != 0,
+            state[0] & (1 << Button.RIGHT)   != 0,
+            state[0] & (1 << Button.MIDDLE)  != 0,
+            state[0] & (1 << Button.BUTTON4) != 0,
+            state[0] & (1 << Button.BUTTON5) != 0,
         )
 
     def move_rel(self, x: int, y: int) -> Status:
@@ -187,9 +189,11 @@ class Device:
 
         return Status.SUCCESS, MouseState(
             MouseState.Buttons(
-                data[0] & (1 << Button.LEFT)   != 0,
-                data[0] & (1 << Button.RIGHT)  != 0,
-                data[0] & (1 << Button.MIDDLE) != 0,
+                data[0] & (1 << Button.LEFT)    != 0,
+                data[0] & (1 << Button.RIGHT)   != 0,
+                data[0] & (1 << Button.MIDDLE)  != 0,
+                data[0] & (1 << Button.BUTTON4) != 0,
+                data[0] & (1 << Button.BUTTON5) != 0,
             ),
             MouseState.Axes(0, 0, 0)
         )
@@ -303,9 +307,11 @@ class Device:
 
         return Status.SUCCESS, MouseState(
             MouseState.Buttons(
-                data[0] & (1 << Button.LEFT)   != 0,
-                data[0] & (1 << Button.RIGHT)  != 0,
-                data[0] & (1 << Button.MIDDLE) != 0,
+                data[0] & (1 << Button.LEFT)    != 0,
+                data[0] & (1 << Button.RIGHT)   != 0,
+                data[0] & (1 << Button.MIDDLE)  != 0,
+                data[0] & (1 << Button.BUTTON4) != 0,
+                data[0] & (1 << Button.BUTTON5) != 0,
             ),
             MouseState.Axes(
                 int.from_bytes(data[1:3], 'little', signed=True),

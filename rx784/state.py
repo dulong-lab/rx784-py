@@ -42,9 +42,11 @@ class KeyboardLEDsState:
 
 @dataclass
 class ButtonsState:
-    left:   bool
-    right:  bool
-    middle: bool
+    left:    bool
+    right:   bool
+    middle:  bool
+    button4: bool
+    button5: bool
 
 
 @dataclass
@@ -54,6 +56,8 @@ class MouseState:
         left:   bool
         right:  bool
         middle: bool
+        button4: bool
+        button5: bool
 
     @dataclass
     class Axes:
@@ -67,7 +71,9 @@ class MouseState:
     def to_bytes(self) -> bytes:
         return (((self.buttons.left   << Button.LEFT)
                | (self.buttons.right  << Button.RIGHT)
-               | (self.buttons.middle << Button.MIDDLE)).to_bytes(1, 'little')
+               | (self.buttons.right  << Button.MIDDLE)
+               | (self.buttons.right  << Button.BUTTON4)
+               | (self.buttons.middle << Button.BUTTON5)).to_bytes(1, 'little')
               + self.axes.x.to_bytes(2, 'little')
               + self.axes.y.to_bytes(2, 'little')
               + self.axes.w.to_bytes(2, 'little'))
